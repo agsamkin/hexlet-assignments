@@ -16,11 +16,15 @@ class App {
         ));
 
         List<String> result = App.buildAppartmentsList(appartments, 3);
-        System.out.println(result); // =>
+        System.out.println(result);
     }
 
     public static List<String> buildAppartmentsList(List<Home> appartments, int count) {
-        return appartments.stream().limit(count).sorted(Comparator.comparing(Home::getArea)).map(a -> a.toString()).collect(Collectors.toList());
+        return appartments.stream()
+                .limit(count)
+                .sorted(Comparator.comparing(Home::getArea))
+                .map(a -> a.toString())
+                .collect(Collectors.toList());
     }
 }
 // END
