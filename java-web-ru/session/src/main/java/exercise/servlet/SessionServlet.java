@@ -57,6 +57,7 @@ public class SessionServlet extends HttpServlet {
 
         // BEGIN
         HttpSession session = request.getSession();
+        session.removeAttribute("flash");
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -64,11 +65,13 @@ public class SessionServlet extends HttpServlet {
         Map<String, String> user = users.findByEmail(email);
         if (user != null && Objects.equals(user.get("password"), password)) {
             session.setAttribute("userId", user.get("id"));
-            session.setAttribute("flash", "Вы успешно вошли");
+            session.setAttribute("flash", "Р’С‹ СѓСЃРїРµС€РЅРѕ РІРѕС€Р»Рё");
             response.sendRedirect("/");
         } else {
             response.setStatus(422);
-            session.setAttribute("flash", "Неверные логин или пароль");
+
+            request.setAttribute("user", user);
+            session.setAttribute("flash", "РќРµРІРµСЂРЅС‹Рµ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login.jsp");
             requestDispatcher.forward(request, response);
         }
@@ -83,7 +86,8 @@ public class SessionServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         session.removeAttribute("userId");
-        session.setAttribute("flash", "Вы успешно вышли");
+        session.setAttribute("flash", "Р’С‹ СѓСЃРїРµС€РЅРѕ РІС‹С€Р»Рё");
+
         response.sendRedirect("/");
         // END
     }
