@@ -1,0 +1,34 @@
+server:
+  port: ${PORT:5000}
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  datasource:
+    url: jdbc:h2:./hexlet
+    username: sa
+    password:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml
+  h2:
+    console:
+      enabled: true
+      path: /h2console/
+      settings:
+        web-allow-others: true
+
+# BEGIN
+# Конфигурируем библиотеку springdoc
+# По умолчанию страница swgger ui открывается по адресу http://server:port/context-path/swagger-ui.html
+# Если нам нужно указать другой адрес, можно сделать это в файле application.yml
+springdoc:
+  swagger-ui:
+    path: /swagger.html
+# END
