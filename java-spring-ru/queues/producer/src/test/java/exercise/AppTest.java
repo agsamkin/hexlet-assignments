@@ -35,7 +35,7 @@ public class AppTest {
 
     private static AMQPServerMock server;
     private static int mockServerPort = 5611;
-    private String key = "exchange.key";
+    private String key = "exchange.exchange.key";
 
     @BeforeAll
     public static void beforeAll() {
