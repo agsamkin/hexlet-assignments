@@ -10,7 +10,6 @@ public class RabbitMqConfig {
     // BEGIN
     @Bean
     Queue queue() {
-        // Задаём имя очереди
         return new Queue("queue", false);
     }
     // END

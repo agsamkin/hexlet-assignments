@@ -13,20 +13,17 @@ public class RabbitMqConfig {
     // BEGIN
     @Bean
     Queue queue() {
-        // Задаём имя очереди
         return new Queue("queue", false);
     }
 
     @Bean
     TopicExchange exchange() {
-        // Задаём имя "обменника". Как и имя очереди, оно может быть любым
         return new TopicExchange("exchange");
     }
 
     @Bean
     Binding binding(Queue queue, TopicExchange exchange) {
-        // Сообщения с ключом "key" будут направлены в очередь "queue"
-        return BindingBuilder.bind(queue).to(exchange).with("exchange.key");
+        return BindingBuilder.bind(queue).to(exchange).with("key");
     }
     // END
 }
